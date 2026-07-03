@@ -9,11 +9,21 @@ define view entity Z20002_C_EmployeeQuery
       FirstName,
       LastName,
       DepartmentId,
-      _Department.Description         as DepartmentDescription,
-      _Department._Assistant.LastName as AssistantName,
-
+      _Department.Description                  as DepartmentDescription,
+      _Department._Assistant.LastName          as AssistantName,
+      @EndUserText.label: 'Employee Role'
+      case EmployeeId
+      when _Department.HeadId then 'H'
+      when _Department.AssistantId then 'A'
+      else ''
+      end                                      as EmployeeRole,
+      @EndUserText.label: 'Monthly Salary'
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      cast( AnnualSalary as abap.fltp ) / 12.0 as MonthlySalary,
+      CurrencyCode,
 
       /* Associations */
       _Department
+
 
 }
