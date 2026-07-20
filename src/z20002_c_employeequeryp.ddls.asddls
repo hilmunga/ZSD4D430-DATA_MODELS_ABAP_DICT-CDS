@@ -7,6 +7,7 @@ define view entity Z20002_C_EmployeeQueryP
 
     p_target_curr : /dmo/currency_code,
     @EndUserText.label: 'Date of Evaluation'
+    @Environment.systemField: #SYSTEM_DATE //Make sure date is selected by default when no date is selected use annotation.
     p_date        : abap.dats
 
 
