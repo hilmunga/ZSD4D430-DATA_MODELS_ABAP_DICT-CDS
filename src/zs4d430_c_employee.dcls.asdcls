@@ -1,0 +1,11 @@
+@EndUserText.label: 'Access Control for Employees CDS'
+@MappingRole: true
+define role ZS4D430_C_EMPLOYEE {
+    grant
+        select
+            on
+                Z20002_C_EMPLOYEE
+                    where
+                        inheriting conditions from entity Z20002_R_EMPLOYEE;
+                        
+}
