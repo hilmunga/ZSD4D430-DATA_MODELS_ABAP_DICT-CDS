@@ -1,9 +1,15 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AbapCatalog: {
+   dataMaintenance: #RESTRICTED,
+   viewEnhancementCategory: [#PROJECTION_LIST],
+   extensibility.dataSources: [ 'Employee' ],
+   extensibility.elementSuffix: 'ZEM'
+}
+
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: ' Employee (Query)'
 @Metadata.ignorePropagatedAnnotations: true
 define view entity Z20002_C_EmployeeQueryP
-  with parameters
+  with parameters 
 
     p_target_curr : /dmo/currency_code,
     @EndUserText.label: 'Date of Evaluation'
@@ -11,7 +17,7 @@ define view entity Z20002_C_EmployeeQueryP
     p_date        : abap.dats
 
 
-  as select from Z20002_R_EMPLOYEE
+  as select from Z20002_R_EMPLOYEE as Employee
 {
   key EmployeeId,
       FirstName,

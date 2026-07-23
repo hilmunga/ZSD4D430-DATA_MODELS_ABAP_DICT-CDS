@@ -1,9 +1,16 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
+//@AbapCatalog.viewEnhancementCategory: [#PROJECTION_LIST]//[#NONE] change for extensibility purposes to #PROJECTION_LIST
+@AbapCatalog: {
+    dataMaintenance: #RESTRICTED,
+    viewEnhancementCategory: [#PROJECTION_LIST],
+    extensibility.dataSources: [ 'Employee' ],
+    extensibility.elementSuffix: 'ZEM'
+
+ }
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Employee (Entity)'
 @Metadata.ignorePropagatedAnnotations: true
 define view entity Z20002_R_EMPLOYEE
-  as select from z20002_employ
+  as select from z20002_employ as Employee
   association [1..1] to Z20002_R_Department as _Department on $projection.DepartmentId = _Department.Id
 {
   key employee_id           as EmployeeId,
